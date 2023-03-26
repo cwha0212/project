@@ -23,10 +23,9 @@ def pointcloud_callback(msg):
     # 강도 데이터를 사용하여 작업 수행
     for i,intensity in enumerate(intensities):
       if intensity>100:
-        print(intensity)
         points = np.append(points,np.array([[x[i],y[i],z[i]]]),axis=0)
         print(points)
 
 rospy.init_node('pointcloud_subscriber')
-sub = rospy.Subscriber('/ouster/points', PointCloud2, pointcloud_callback)
+sub = rospy.Subscriber('/cloud_registered', PointCloud2, pointcloud_callback)
 rospy.spin()
