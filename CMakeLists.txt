@@ -165,6 +165,7 @@ catkin_install_python(PROGRAMS
   src/pose_extraction.py
   src/pointcloud2_to_pcl.py
   src/get_cloud_intensity.py
+  src/pub_marker.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
