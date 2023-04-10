@@ -166,6 +166,7 @@ catkin_install_python(PROGRAMS
   src/pointcloud2_to_pcl.py
   src/get_cloud_intensity.py
   src/pub_marker.py
+  src/create_cloud_xyzrgb_nvm.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
