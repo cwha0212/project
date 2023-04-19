@@ -17,7 +17,7 @@ i = 0
 use_pose = 0
 use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/clouds.txt", "r") as f:
+with open("/home/chang/catkin_ws/src/project/7eng_to_1eng_result.txt", "r") as f:
     lines = f.readlines()
     for line in lines:
         cc = line.split()
