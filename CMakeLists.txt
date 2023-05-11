@@ -167,6 +167,7 @@ catkin_install_python(PROGRAMS
   src/get_cloud_intensity.py
   src/pub_marker.py
   src/create_cloud_xyzrgb_nvm.py
+  src/Compressed_to_Image.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
