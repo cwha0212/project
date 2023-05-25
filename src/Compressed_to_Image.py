@@ -3,6 +3,7 @@
 import rospy
 from sensor_msgs.msg import CompressedImage, Image
 from cv_bridge import CvBridge, CvBridgeError
+import cv2
 
 class CompressedToImage:
     def __init__(self):
@@ -13,6 +14,7 @@ class CompressedToImage:
     def callback(self, data):
         try:
             img = self.bridge.compressed_imgmsg_to_cv2(data, "bgr8")
+            cv2.imwrite("img.jpg",img)
             img_msg = self.bridge.cv2_to_imgmsg(img, "bgr8")
             self.pub.publish(img_msg)
         except CvBridgeError as e:

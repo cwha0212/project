@@ -168,6 +168,7 @@ catkin_install_python(PROGRAMS
   src/pub_marker.py
   src/create_cloud_xyzrgb_nvm.py
   src/Compressed_to_Image.py
+  src/npy_to_pointcloud2.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
