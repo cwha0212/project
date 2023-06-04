@@ -10,7 +10,7 @@ import numpy as np
 rospy.init_node('parking_detection')
 pub1 = rospy.Publisher('/legal',PointCloud2, queue_size=100)
 pub2 = rospy.Publisher('/illegal',PointCloud2, queue_size=100)
-points_of_parking_lots = [[[0,0],[10,0],[10,10],[0,10]]]
+points_of_parking_lots = [[[0,0],[10,0],[10,10],[0,10],[0,0]]]
 parking_lots_is = 0
 R = [[1,0,0,0],
      [0,1,0,0],
@@ -18,10 +18,10 @@ R = [[1,0,0,0],
      [0,0,0,1]]
 
 fields = [PointField('x', 0, PointField.FLOAT32, 1),
-          PointField('y', 8, PointField.FLOAT32, 1),
-          PointField('z', 16, PointField.FLOAT32, 1),
-          # PointField('rgb', 12, PointField.UINT32, 1),
-          PointField('rgba', 24, PointField.UINT32, 1),
+          PointField('y', 4, PointField.FLOAT32, 1),
+          PointField('z', 8, PointField.FLOAT32, 1),
+          PointField('intensity', 12, PointField.FLOAT32, 1),
+          PointField('rgba', 16, PointField.UINT32, 1),
           ]
 
 def inside_or_outside(polygon, point):
@@ -63,39 +63,36 @@ def point_array_callback(msg):
 def pointcloud_callback(msg):
     xyz = []
     _xyz = []
+    intensities = []
     legal_boards = []
     illegal_boards = []
-    fields = [PointField('x', 0, PointField.FLOAT32, 1),
-          PointField('y', 8, PointField.FLOAT32, 1),
-          PointField('z', 16, PointField.FLOAT32, 1),
-          # PointField('rgb', 12, PointField.UINT32, 1),
-          PointField('rgba', 24, PointField.UINT32, 1),
-          ]
-    for data in pc2.read_points(msg, field_names=("x","y","z"), skip_nans=True):
+    for data in pc2.read_points(msg, field_names=("x","y","z","intensity"), skip_nans=True):
       xyz.append([data[0], data[1], data[2], 1])
-    xyz = np.array(xyz)
-    print(R)
-    _xyz = np.dot(R, xyz.T)
-    _xyz = np.delete(_xyz.T, 3, axis = 1)
+      intensities.append(data[3])
+    _xyz = np.array(xyz)
+    # xyz = np.array(xyz)
+    # _xyz = np.dot(R, xyz.T)
+    # _xyz = np.delete(_xyz.T, 3, axis = 1)
     for polygon in points_of_parking_lots:
-        for i,_point in enumerate(_xyz):
-          cloud_x = _xyz[i][0]
-          cloud_y = _xyz[i][1]
-          cloud_z = _xyz[i][2]
+        for i,_point in enumerate(xyz):
+          cloud_x = xyz[i][0]
+          cloud_y = xyz[i][1]
+          cloud_z = xyz[i][2]
+          intensity = intensities[i]
           a = 255
           if inside_or_outside(polygon, _point):
             cloud_r = 100
             cloud_g = 255
             cloud_b = 0
             rgb = struct.unpack('I', struct.pack('BBBB', cloud_b, cloud_g, cloud_r, a))[0]
-            pt = [cloud_x, cloud_y, cloud_z, rgb]
+            pt = [cloud_x, cloud_y, cloud_z, intensity, rgb]
             legal_boards.append(pt)
           else :
             cloud_r = 255
             cloud_g = 0
             cloud_b = 0
             rgb = struct.unpack('I', struct.pack('BBBB', cloud_b, cloud_g, cloud_r, a))[0]
-            pt = [cloud_x, cloud_y, cloud_z, rgb]
+            pt = [cloud_x, cloud_y, cloud_z, intensity, rgb]
             illegal_boards.append(pt)
     header = Header()
     header.frame_id = "map"
@@ -133,6 +130,6 @@ def Odometry_callback(msg):
                   [0, 0, 0, 1]])
 
 sub1 = rospy.Subscriber('/parking_lots_points',Point_Array, point_array_callback)
-sub2 = rospy.Subscriber('/ouster/points', PointCloud2, pointcloud_callback)
+sub2 = rospy.Subscriber('/aligned_points', PointCloud2, pointcloud_callback)
 sub3 = rospy.Subscriber('/odom', Odometry, Odometry_callback)
 rospy.spin()
