@@ -98,7 +98,7 @@ def pointcloud_callback(msg):
             pt = [cloud_x, cloud_y, cloud_z, rgb]
             illegal_boards.append(pt)
     header = Header()
-    header.frame_id = "camera_init"
+    header.frame_id = "map"
     legal = pc2.create_cloud(header, fields, legal_boards)
     illegal = pc2.create_cloud(header, fields, illegal_boards)
     pub1.publish(legal)
@@ -134,5 +134,5 @@ def Odometry_callback(msg):
 
 sub1 = rospy.Subscriber('/parking_lots_points',Point_Array, point_array_callback)
 sub2 = rospy.Subscriber('/ouster/points', PointCloud2, pointcloud_callback)
-sub3 = rospy.Subscriber('/Odometry', Odometry, Odometry_callback)
+sub3 = rospy.Subscriber('/odom', Odometry, Odometry_callback)
 rospy.spin()

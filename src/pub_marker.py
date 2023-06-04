@@ -26,7 +26,7 @@ def publish_markers(data):
     i = 0
     for point in points:
         marker = Marker()
-        marker.header.frame_id = "camera_init"
+        marker.header.frame_id = "map"
         marker.type = marker.LINE_LIST
         marker.action = marker.ADD
         marker.id = i
