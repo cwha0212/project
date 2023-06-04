@@ -3,17 +3,30 @@
 import rospy
 from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point
+from project.msg import Point_Array
 
-def publish_markers():
-    rospy.init_node('parking_mark', anonymous=True)
-    pub = rospy.Publisher('markers', MarkerArray, queue_size=10)
+def publish_markers(data):
+    pub = rospy.Publisher('parking_lots', MarkerArray, queue_size=10)
     rate = rospy.Rate(10)  # 10hz
     i = 0
-    points = [[[12.5733,-0.837072,-0.482983],[12.7407,-2.138,-0.667137],[15.3831,-2.05285,-0.549528],[15.2886,-0.593477,-0.574932]]]
+    points=[]
+    _p_array = []
+    for point in data.points:
+        _p = []
+        _p.append(point.x)
+        _p.append(point.y)
+        _p.append(point.z)
+        _p_array.append(_p)
+        i += 1
+        if i == 4 :
+            points.append(_p_array)
+            _p_array = []
+            i = 0
     markers = MarkerArray()
+    i = 0
     for point in points:
         marker = Marker()
-        marker.header.frame_id = "map"
+        marker.header.frame_id = "camera_init"
         marker.type = marker.LINE_LIST
         marker.action = marker.ADD
         marker.id = i
@@ -41,13 +54,14 @@ def publish_markers():
         marker.points.append(p_list[3])
         marker.points.append(p_list[0])
         markers.markers.append(marker)
-
-    while not rospy.is_shutdown():
         pub.publish(markers)
-        rate.sleep()
+
+
 
 if __name__ == '__main__':
     try:
-        publish_markers()
+        rospy.init_node('parking_lots', anonymous=True)
+        sub = rospy.Subscriber('/parking_lots_points', Point_Array, publish_markers)
+        rospy.spin()
     except rospy.ROSInterruptException:
         pass
