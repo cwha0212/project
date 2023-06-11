@@ -95,10 +95,10 @@ for i in range(1,6000):
   points = []
   i = str(i)
   num = i.zfill(5)
-  filepath1 = ('/media/chang/jairlab_ssd/RandLA-Net/data/sequence_0.06/01/velodyne/0_')
-  filepath2 = ('/media/chang/jairlab_ssd/RandLA-Net/data/sequence_0.06/01/labels/0_')
+  filepath1 = ('/media/chang/jairlab_ssd/DATA/lidar_data/ENG_AND_JBNU/label_data_0.06/11/velodyne/0_')
+  filepath2 = ('/media/chang/jairlab_ssd/RandLA-Net/test/sequences/11/labels/0_')
   clouds = np.load(filepath1 + num + '.npy')
-  labels = np.load(filepath2 + num + '.npy',allow_pickle=True)
+  labels = np.load(filepath2 + num + '.npy',allow_pickle=True,encoding='latin1')
   time.sleep(0.06)
   for i,j in enumerate(clouds):
     x = j[0]
