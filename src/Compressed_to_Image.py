@@ -4,6 +4,7 @@ import rospy
 from sensor_msgs.msg import CompressedImage, Image
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
+import open3d
 
 class CompressedToImage:
     def __init__(self):
