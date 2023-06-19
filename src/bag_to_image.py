@@ -13,7 +13,7 @@ class BagToImage:
         try:
             img = self.bridge.imgmsg_to_cv2(data, "bgr8")
             name = "frame" + str(self.i).zfill(5) + ".jpg"
-            name = "/media/chang/jairlab_ssd/DATA/visual_sfm/3eng/" + name
+            name = "/media/chang/jairlab_ssd/DATA/visual_sfm/7eng_half/" + name
             cv2.imwrite(name,img)
             self.i += 1
         except CvBridgeError as e:
