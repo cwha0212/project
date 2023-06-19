@@ -174,6 +174,7 @@ catkin_install_python(PROGRAMS
   src/npy_to_pointcloud2.py
   src/pub_points.py
   src/parking_detection.py
+  src/bag_to_image.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

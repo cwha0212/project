@@ -17,7 +17,7 @@ i = 0
 use_pose = 0
 use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/7eng.txt", "r") as f:
+with open("/home/chang/catkin_ws/src/project/122.txt", "r") as f:
   lines = f.readlines()
   for line in lines:
     i = i+1
@@ -40,113 +40,113 @@ with open("/home/chang/catkin_ws/src/project/7eng.txt", "r") as f:
       pt = [x, y, z, rgb]
       points.append(pt)
 
-i = 0
-use_pose = 0
-use_cloud = 0
+# i = 0
+# use_pose = 0
+# use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/engfactory_result.txt", "r") as f:
-  lines = f.readlines()
-  for line in lines:
-    i = i+1
-    if i == 3:
-      aa = line.split()
-      use_pose = int(aa[0])
-    if i == use_pose + 5:
-      bb = line.split()
-      use_cloud = int(bb[0])
-    if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
-      cc = line.split()
-      x = float(cc[0])
-      y = float(cc[1])
-      z = float(cc[2])
-      r = int(cc[3])
-      g = int(cc[4])
-      b = int(cc[5])
-      a = 255
-      rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
-      pt = [x, y, z, rgb]
-      points.append(pt)
+# with open("/home/chang/catkin_ws/src/project/engfactory_result.txt", "r") as f:
+#   lines = f.readlines()
+#   for line in lines:
+#     i = i+1
+#     if i == 3:
+#       aa = line.split()
+#       use_pose = int(aa[0])
+#     if i == use_pose + 5:
+#       bb = line.split()
+#       use_cloud = int(bb[0])
+#     if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
+#       cc = line.split()
+#       x = float(cc[0])
+#       y = float(cc[1])
+#       z = float(cc[2])
+#       r = int(cc[3])
+#       g = int(cc[4])
+#       b = int(cc[5])
+#       a = 255
+#       rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#       pt = [x, y, z, rgb]
+#       points.append(pt)
 
-i = 0
-use_pose = 0
-use_cloud = 0
+# i = 0
+# use_pose = 0
+# use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/6eng_result.txt", "r") as f:
-  lines = f.readlines()
-  for line in lines:
-    i = i+1
-    if i == 3:
-      aa = line.split()
-      use_pose = int(aa[0])
-    if i == use_pose + 5:
-      bb = line.split()
-      use_cloud = int(bb[0])
-    if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
-      cc = line.split()
-      x = float(cc[0])
-      y = float(cc[1])
-      z = float(cc[2])
-      r = int(cc[3])
-      g = int(cc[4])
-      b = int(cc[5])
-      a = 255
-      rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
-      pt = [x, y, z, rgb]
-      points.append(pt)
+# with open("/home/chang/catkin_ws/src/project/6eng_result.txt", "r") as f:
+#   lines = f.readlines()
+#   for line in lines:
+#     i = i+1
+#     if i == 3:
+#       aa = line.split()
+#       use_pose = int(aa[0])
+#     if i == use_pose + 5:
+#       bb = line.split()
+#       use_cloud = int(bb[0])
+#     if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
+#       cc = line.split()
+#       x = float(cc[0])
+#       y = float(cc[1])
+#       z = float(cc[2])
+#       r = int(cc[3])
+#       g = int(cc[4])
+#       b = int(cc[5])
+#       a = 255
+#       rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#       pt = [x, y, z, rgb]
+#       points.append(pt)
 
-i = 0
-use_pose = 0
-use_cloud = 0
+# i = 0
+# use_pose = 0
+# use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/3eng_result.txt", "r") as f:
-  lines = f.readlines()
-  for line in lines:
-    i = i+1
-    if i == 3:
-      aa = line.split()
-      use_pose = int(aa[0])
-    if i == use_pose + 5:
-      bb = line.split()
-      use_cloud = int(bb[0])
-    if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
-      cc = line.split()
-      x = float(cc[0])
-      y = float(cc[1])
-      z = float(cc[2])
-      r = int(cc[3])
-      g = int(cc[4])
-      b = int(cc[5])
-      a = 255
-      rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
-      pt = [x, y, z, rgb]
-      points.append(pt)
+# with open("/home/chang/catkin_ws/src/project/3eng_result.txt", "r") as f:
+#   lines = f.readlines()
+#   for line in lines:
+#     i = i+1
+#     if i == 3:
+#       aa = line.split()
+#       use_pose = int(aa[0])
+#     if i == use_pose + 5:
+#       bb = line.split()
+#       use_cloud = int(bb[0])
+#     if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
+#       cc = line.split()
+#       x = float(cc[0])
+#       y = float(cc[1])
+#       z = float(cc[2])
+#       r = int(cc[3])
+#       g = int(cc[4])
+#       b = int(cc[5])
+#       a = 255
+#       rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#       pt = [x, y, z, rgb]
+#       points.append(pt)
 
-i = 0
-use_pose = 0
-use_cloud = 0
+# i = 0
+# use_pose = 0
+# use_cloud = 0
 
-with open("/home/chang/catkin_ws/src/project/1eng_result.txt", "r") as f:
-  lines = f.readlines()
-  for line in lines:
-    i = i+1
-    if i == 3:
-      aa = line.split()
-      use_pose = int(aa[0])
-    if i == use_pose + 5:
-      bb = line.split()
-      use_cloud = int(bb[0])
-    if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
-      cc = line.split()
-      x = float(cc[0])
-      y = float(cc[1])
-      z = float(cc[2])
-      r = int(cc[3])
-      g = int(cc[4])
-      b = int(cc[5])
-      a = 255
-      rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
-      pt = [x, y, z, rgb]
-      points.append(pt)
+# with open("/home/chang/catkin_ws/src/project/1eng_result.txt", "r") as f:
+#   lines = f.readlines()
+#   for line in lines:
+#     i = i+1
+#     if i == 3:
+#       aa = line.split()
+#       use_pose = int(aa[0])
+#     if i == use_pose + 5:
+#       bb = line.split()
+#       use_cloud = int(bb[0])
+#     if i >= use_pose + 6 and i <= use_cloud + use_pose + 5:
+#       cc = line.split()
+#       x = float(cc[0])
+#       y = float(cc[1])
+#       z = float(cc[2])
+#       r = int(cc[3])
+#       g = int(cc[4])
+#       b = int(cc[5])
+#       a = 255
+#       rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#       pt = [x, y, z, rgb]
+#       points.append(pt)
 
 fields = [PointField('x', 0, PointField.FLOAT32, 1),
           PointField('y', 8, PointField.FLOAT32, 1),
