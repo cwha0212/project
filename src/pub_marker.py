@@ -6,9 +6,8 @@ from geometry_msgs.msg import Point
 from project.msg import Point_Array
 
 def publish_markers():
-    data = [[-89.4811, 5.71856, 39.7882], [-82.8589, 5.41617, 30.9057], [-1.0203, 6.17932, 45.677], [-0.681195, 10.6485, 53.2346]]
+    data = [[-76.8014, 6.03545, 38.0975], [-63.2765, 5.04305, 59.5674], [20.0683, 6.99043, 73.0163], [8.77612, 1.36539, 17.9203]]
     pub = rospy.Publisher('parking_lots', MarkerArray, queue_size=10)
-    rate = rospy.Rate(10)  # 10hz
     i = 0
     points=[]
     _p_array = []
@@ -61,3 +60,4 @@ rospy.init_node('parking_lots', anonymous=True)
 
 while True:
     publish_markers()
+    rospy.sleep(1.0)

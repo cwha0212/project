@@ -11,18 +11,11 @@ class BagToImage:
 
     def callback(self, data):
         try:
-<<<<<<< HEAD
             if self.i % 5 == 0:
                 img = self.bridge.imgmsg_to_cv2(data, "bgr8")
                 name = "frame" + str(self.i).zfill(5) + ".jpg"
                 name = "/media/chang/jairlab_ssd/proj_library/realsense_0717_library/img/" + name
                 cv2.imwrite(name,img)
-=======
-            img = self.bridge.imgmsg_to_cv2(data, "bgr8")
-            name = "frame" + str(self.i).zfill(5) + ".jpg"
-            name = "/media/chang/jairlab_ssd/proj_library/realsense_0717_library/orig_img/" + name
-            cv2.imwrite(name,img)
->>>>>>> 58c8facc81f8a1d7458a1f00e8746888701a357f
             self.i += 1
         except CvBridgeError as e:
             rospy.logerr(e)

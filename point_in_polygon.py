@@ -1,8 +1,3 @@
-import rospy
-import struct
-
-parking_lots_is = 0
-
 def inside_or_outside(polygon, point):
     N = len(polygon)-1
     counter = 0
@@ -20,9 +15,24 @@ def inside_or_outside(polygon, point):
         res = True
     return res
 
-polygon = [[-97.2911, 0.409592, -9.8341], [-20.8245, -4.97508, -49.1828], [-25.2868, -4.29083, -54.4302], [-93.6375, 0.550812, -19.4539], [-97.2911, 0.409592, -9.8341]]
+polygon = [[-117.312, -26.1437, -31.7009], [-81.6904, 2.47509, 15.0826], [-27.6202, -4.66261, -52.3082], [-22.211, -34.9372, -67.2226], [-117.312, -26.1437, -31.7009]]
 t = open("/home/chang/result1.txt","w")
-with open("/home/chang/Downloads/map_rgbd_c.txt", "r") as f:
+with open("/home/chang/Downloads/Map_rgb/map_orb_c_noroad.txt", "r") as f:
+    lines = f.readlines()
+    for i, line in enumerate(lines):
+        cc = line.split()
+        x = float(cc[0])
+        y = float(cc[1])
+        z = float(cc[2])
+        r = int(cc[3])
+        g = int(cc[4])
+        b = int(cc[5])
+        if inside_or_outside(polygon, [x,y,z]) :
+            t.write(str(x) + " " + str(y) + " " + str(z) + " " + str(r) + " " + str(g) + " " + str(b) + "\n")
+
+polygon = [[-76.8014, 6.03545, 38.0975], [-63.2765, 5.04305, 59.5674], [20.0683, 6.99043, 73.0163], [8.77612, 1.36539, 17.9203], [-76.8014, 6.03545, 38.0975]]
+t = open("/home/chang/result2.txt","w")
+with open("/home/chang/Downloads/Map_rgb/map2_orb_c_noroad.txt", "r") as f:
     lines = f.readlines()
     for i, line in enumerate(lines):
         cc = line.split()
