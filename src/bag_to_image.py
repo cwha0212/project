@@ -6,15 +6,16 @@ import cv2
 class BagToImage:
     def __init__(self):
         self.bridge = CvBridge()
-        self.sub = rospy.Subscriber('/device_0/sensor_1/Color_0/image/data', Image, self.callback)
+        self.sub = rospy.Subscriber('/camera/color/image_raw', Image, self.callback)
         self.i = 0
 
     def callback(self, data):
         try:
-            img = self.bridge.imgmsg_to_cv2(data, "bgr8")
-            name = "frame" + str(self.i).zfill(5) + ".jpg"
-            name = "/media/chang/jairlab_ssd/DATA/visual_sfm/7eng_half/" + name
-            cv2.imwrite(name,img)
+            if self.i % 5 == 0:
+                img = self.bridge.imgmsg_to_cv2(data, "bgr8")
+                name = "frame" + str(self.i).zfill(5) + ".jpg"
+                name = "/media/chang/jairlab_ssd/proj_library/realsense_0717_library/img/" + name
+                cv2.imwrite(name,img)
             self.i += 1
         except CvBridgeError as e:
             rospy.logerr(e)
