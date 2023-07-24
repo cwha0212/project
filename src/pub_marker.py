@@ -5,17 +5,18 @@ from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point
 from project.msg import Point_Array
 
-def publish_markers(data):
+def publish_markers():
+    data = [[-89.4811, 5.71856, 39.7882], [-82.8589, 5.41617, 30.9057], [-1.0203, 6.17932, 45.677], [-0.681195, 10.6485, 53.2346]]
     pub = rospy.Publisher('parking_lots', MarkerArray, queue_size=10)
     rate = rospy.Rate(10)  # 10hz
     i = 0
     points=[]
     _p_array = []
-    for point in data.points:
+    for point in data:
         _p = []
-        _p.append(point.x)
-        _p.append(point.y)
-        _p.append(point.z)
+        _p.append(point[0])
+        _p.append(point[1])
+        _p.append(point[2])
         _p_array.append(_p)
         i += 1
         if i == 4 :
@@ -31,13 +32,13 @@ def publish_markers(data):
         marker.action = marker.ADD
         marker.id = i
         i = i+1
-        marker.scale.x = 0.2
-        marker.scale.y = 0.2
-        marker.scale.z = 0.2
+        marker.scale.x = 0.5
+        marker.scale.y = 0.5
+        marker.scale.z = 0.5
         marker.color.a = 1.0
-        marker.color.r = 0.0
+        marker.color.r = 1.0
         marker.color.g = 0.0
-        marker.color.b = 1.0
+        marker.color.b = 0.0
         p_list = []
         for p in point:
             _p = Point()
@@ -56,12 +57,7 @@ def publish_markers(data):
         markers.markers.append(marker)
         pub.publish(markers)
 
+rospy.init_node('parking_lots', anonymous=True)
 
-
-if __name__ == '__main__':
-    try:
-        rospy.init_node('parking_lots', anonymous=True)
-        sub = rospy.Subscriber('/parking_lots_points', Point_Array, publish_markers)
-        rospy.spin()
-    except rospy.ROSInterruptException:
-        pass
+while True:
+    publish_markers()

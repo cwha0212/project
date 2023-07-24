@@ -6,7 +6,6 @@ import struct
 from sensor_msgs import point_cloud2
 from sensor_msgs.msg import PointCloud2, PointField
 from std_msgs.msg import Header
-import open3d
 
 rospy.init_node("create_cloud_xyzrgb")
 pub = rospy.Publisher("point_cloud2", PointCloud2, queue_size=2)
@@ -16,27 +15,50 @@ points = []
 i = 0
 use_pose = 0
 use_cloud = 0
-t = open("/home/chang/catkin_ws/src/project/a.txt", "r")
-with open("/home/chang/catkin_ws/src/project/b.txt", "r") as f:
+with open("/home/chang/Downloads/map2_orb_c.txt", "r") as f:
     lines = f.readlines()
-    nums = t.readlines()
     for i, line in enumerate(lines):
         cc = line.split()
         x = float(cc[0])
         y = float(cc[1])
         z = float(cc[2])
-        if int(nums[i]) == 1:
-            r = 255
-            g = 0
-            b = 0
-        elif int(nums[i]) == 0:
-            r = 0
-            g = 255
-            b = 0
+        r = int(cc[3])
+        g = int(cc[4])
+        b = int(cc[5])
         a = 255
         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
         pt = [x, y, z, rgb]
         points.append(pt)
+
+with open("/home/chang/result2.txt", "r") as f:
+    lines = f.readlines()
+    for i, line in enumerate(lines):
+        cc = line.split()
+        x = float(cc[0])
+        y = float(cc[1])
+        z = float(cc[2])
+        r = 255
+        g = 0
+        b = 0
+        a = 255
+        rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+        pt = [x, y, z, rgb]
+        points.append(pt)
+
+# with open("/home/chang/Downloads/map_orb.txt", "r") as f:
+#     lines = f.readlines()
+#     for i, line in enumerate(lines):
+#         cc = line.split()
+#         x = float(cc[0])
+#         y = float(cc[1])
+#         z = float(cc[2])
+#         r = 255
+#         b = 0
+#         g = 0
+#         a = 255
+#         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#         pt = [x, y, z, rgb]
+#         points.append(pt)
 
 fields = [PointField('x', 0, PointField.FLOAT32, 1),
           PointField('y', 8, PointField.FLOAT32, 1),
