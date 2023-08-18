@@ -3,10 +3,9 @@
 import rospy
 from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point
-from project.msg import Point_Array
 
 def publish_markers():
-    data = [[-76.8014, 6.03545, 38.0975], [-63.2765, 5.04305, 59.5674], [20.0683, 6.99043, 73.0163], [8.77612, 1.36539, 17.9203]]
+    data = [[-117.312, -26.1437, -31.7009], [-81.6904, 2.47509, 15.0826], [-27.6202, -4.66261, -52.3082], [-22.211, -34.9372, -67.2226]]
     pub = rospy.Publisher('parking_lots', MarkerArray, queue_size=10)
     i = 0
     points=[]
