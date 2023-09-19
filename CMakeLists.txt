@@ -175,6 +175,7 @@ catkin_install_python(PROGRAMS
   src/pub_points.py
   src/parking_detection.py
   src/bag_to_image.py
+  src/camera_info.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
