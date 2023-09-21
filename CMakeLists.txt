@@ -176,6 +176,7 @@ catkin_install_python(PROGRAMS
   src/parking_detection.py
   src/bag_to_image.py
   src/camera_info.py
+  src/imu_transform.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
