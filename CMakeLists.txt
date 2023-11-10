@@ -177,6 +177,8 @@ catkin_install_python(PROGRAMS
   src/bag_to_image.py
   src/camera_info.py
   src/imu_transform.py
+  src/zoe_node.py
+  src/ex_points.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

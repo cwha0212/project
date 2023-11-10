@@ -5,7 +5,7 @@ from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point
 
 def publish_markers():
-    data = [[-117.312, -26.1437, -31.7009], [-81.6904, 2.47509, 15.0826], [-27.6202, -4.66261, -52.3082], [-22.211, -34.9372, -67.2226]]
+    data = [[-1.24396, -19.2675, -3.28597], [-0.965169, -0.454852, -1.14931], [-9.35781, -0.536103, -1.14858], [-10.6162, -21.1506, -1.16918]]
     pub = rospy.Publisher('parking_lots', MarkerArray, queue_size=10)
     i = 0
     points=[]
@@ -25,7 +25,7 @@ def publish_markers():
     i = 0
     for point in points:
         marker = Marker()
-        marker.header.frame_id = "map"
+        marker.header.frame_id = "world"
         marker.type = marker.LINE_LIST
         marker.action = marker.ADD
         marker.id = i
@@ -34,8 +34,8 @@ def publish_markers():
         marker.scale.y = 0.5
         marker.scale.z = 0.5
         marker.color.a = 1.0
-        marker.color.r = 1.0
-        marker.color.g = 0.0
+        marker.color.r = 0.0
+        marker.color.g = 1.0
         marker.color.b = 0.0
         p_list = []
         for p in point:

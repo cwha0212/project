@@ -7,7 +7,6 @@ def callback(data):
     new_data = Imu()
     new_data = data
     new_data.angular_velocity.y = 0
-    new_data.linear_acceleration.y = -9.8
     pub.publish(new_data)
 
 rospy.init_node('new_imu')
