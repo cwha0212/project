@@ -8,8 +8,21 @@ from std_msgs.msg import Header
 import numpy as np
 import cv2
 
+def callback_point(data):
+   File = open("/home/chang/drivable.txt", "w")
+   if (len(data.data)>=1000):
+      for point in point_cloud2.read_points(data):
+         pt_x = point[0]
+         pt_y = point[1]
+         pt_z = point[2]
+         pt_c = point[3]
+         print(pt_c)
+         File.write(str(pt_x)+' '+str(pt_y)+' '+str(pt_z)+' '+str(pt_c)+"\n")
+      
+      File.close()
+
 def callback_point2(data):
-   File = open("/home/chang/jinsudang_6.txt", "w")
+   File = open("/home/chang/orb.txt", "w")
    if (len(data.data)>=1000):
       for point in point_cloud2.read_points(data):
          pt_x = point[0]
@@ -18,11 +31,11 @@ def callback_point2(data):
          rgb = struct.unpack('I', struct.pack('BBBB', 255,255,255, 255))[0]
          pt_c = rgb
          File.write(str(pt_x)+' '+str(pt_y)+' '+str(pt_z)+' '+str(pt_c)+"\n")
-         print("save")
    File.close()
 
 def Point_sub():
 
+   rospy.Subscriber('/pcl',PointCloud2,callback_point)
    rospy.Subscriber('/orb_slam3/all_points',PointCloud2,callback_point2)
 
    rospy.spin()

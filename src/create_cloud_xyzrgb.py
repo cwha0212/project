@@ -15,11 +15,12 @@ points = []
 i = 0
 use_pose = 0
 use_cloud = 0
-# with open("/home/chang/map_merge/hand/map1_new.txt", "r") as f:
+
+# with open("/home/chang/project_result/urban_merge/scale/urban3.txt", "r") as f:
 #     lines = f.readlines()
 #     for i, line in enumerate(lines):
 #         cc = line.split()
-#         x = float(cc[0])
+#         x = float(cc[0])+1000
 #         y = float(cc[1])
 #         z = float(cc[2])
 #         r = int(cc[3])
@@ -29,31 +30,47 @@ use_cloud = 0
 #         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
 #         pt = [x, y, z, rgb]
 #         points.append(pt)
-with open("/home/chang/진수당/jinsudang_5.txt", "r") as f:
+
+# with open("/home/chang/project_result/urban_merge/scale/urban2.txt", "r") as f:
+#     lines = f.readlines()
+#     for i, line in enumerate(lines):
+#         cc = line.split()
+#         x = float(cc[0])+1000
+#         y = float(cc[1])
+#         z = float(cc[2])
+#         r = int(cc[3])
+#         g = int(cc[4])
+#         b = int(cc[5])
+#         a = 255
+#         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
+#         pt = [x, y, z, rgb]
+#         points.append(pt)
+
+with open("/home/chang/project_result/urban_merge/result_scale/urban2_t.txt", "r") as f:
     lines = f.readlines()
     for i, line in enumerate(lines):
         cc = line.split()
         x = float(cc[0])
         y = float(cc[1])
         z = float(cc[2])
-        r = 255
-        g = 255
-        b = 255
+        r = int(cc[3])
+        g = int(cc[4])
+        b = int(cc[5])
         a = 255
         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
         pt = [x, y, z, rgb]
         points.append(pt)
 
-with open("/home/chang/진수당/jinsudang_2_t2.txt", "r") as f:
+with open("/home/chang/project_result/urban_merge/scale/urban1.txt", "r") as f:
     lines = f.readlines()
     for i, line in enumerate(lines):
         cc = line.split()
-        x = float(cc[0])+100
+        x = float(cc[0])
         y = float(cc[1])
         z = float(cc[2])
-        r = 255
-        g = 255
-        b = 255
+        r = int(cc[3])
+        g = int(cc[4])
+        b = int(cc[5])
         a = 255
         rgb = struct.unpack('I', struct.pack('BBBB', b, g, r, a))[0]
         pt = [x, y, z, rgb]
@@ -68,7 +85,7 @@ fields = [PointField('x', 0, PointField.FLOAT32, 1),
 
 
 header = Header()
-header.frame_id = "camera_init"
+header.frame_id = "map"
 pc2 = point_cloud2.create_cloud(header, fields, points)
 
 while not rospy.is_shutdown():

@@ -28,8 +28,8 @@ import cv2
 class CompressedToImage:
     def __init__(self):
         self.bridge = CvBridge()
-        self.sub = rospy.Subscriber('/camera/color/image_raw/compressed', CompressedImage, self.callback)
-        self.pub = rospy.Publisher('/camera/color/image_raw', Image, queue_size=1)
+        self.sub = rospy.Subscriber('/zed2i/zed_node/left/image_rect_color/compressed', CompressedImage, self.callback)
+        self.pub = rospy.Publisher('/left_raw', Image, queue_size=1)
         self.i=0
 
     def callback(self, data):

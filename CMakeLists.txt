@@ -55,6 +55,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Point_Array.msg
+  Nex1.msg
+  Nex1_pred.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -164,6 +166,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
+  src/file_to_bag.py
   src/create_cloud_xyzrgb.py
   src/pose_extraction.py
   src/pointcloud2_to_pcl.py
@@ -179,6 +182,8 @@ catkin_install_python(PROGRAMS
   src/imu_transform.py
   src/zoe_node.py
   src/ex_points.py
+  src/test.py
+  src/filter.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
